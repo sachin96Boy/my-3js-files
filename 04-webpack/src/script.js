@@ -37,6 +37,25 @@ window.addEventListener('resize', () => {
     
 });
 
+// listen to double cick
+window.addEventListener('dblclick', () => {
+    const fullscreenElement = document.fullscreenElement || document.webkitFullscreenElement;
+
+    if(!fullscreenElement) {
+        if(renderer.domElement.requestFullscreen) {
+            renderer.domElement.requestFullscreen();
+        } else if(renderer.domElement.webkitRequestFullscreen) {
+            renderer.domElement.webkitRequestFullscreen();
+        }
+    } else {
+        if(document.exitFullscreen) {
+            document.exitFullscreen();
+        } else if(document.webkitExitFullscreen) {
+            document.webkitExitFullscreen();
+        }
+    }
+});
+
 // scene
 const scene = new THREE.Scene();
 
@@ -60,6 +79,8 @@ document.body.appendChild( renderer.domElement );
 // constclock = new THREE.Clock();
 
 const controls = new OrbitControls(camera, renderer.domElement);
+
+controls.enableDamping = true;
 // animation
 // gsap.to(cube.rotation, {rotation:27, x: 2, y: 2, z: 2, duration: 2, repeat: -1, ease: "strong.inOut"});
 
@@ -80,6 +101,8 @@ function animate() {
     // camera.rotation.x += 0.01;
     // camera.rotation.y -= 0.01;
     // camera.lookAt(cube.position);
+
+    controls.update();
 
     renderer.render( scene, camera );
 };
