@@ -60,20 +60,20 @@ window.addEventListener("dblclick", () => {
 const scene = new THREE.Scene();
 
 // object
-// const geometry = new THREE.BoxGeometry(1, 1, 1);
+const geometry = new THREE.BoxGeometry(1, 1, 1);
 // //////////////////////////////////////////////////////////////////////////////
-const geometry = new THREE.Geometry(); // empty geometry
+//const geometry = new THREE.Geometry(); // empty geometry
 // for loop to add 1000 vertices
-for (let i = 0; i < 100; i++) {
-    const vertex = new THREE.Vector3(
-        Math.random() - 0.5,
-        Math.random() - 0.5,
-        Math.random() - 0.5
-    );
-    geometry.vertices.push(vertex);
-}
+// for (let i = 0; i < 100; i++) {
+//     const vertex = new THREE.Vector3(
+//         Math.random() - 0.5,
+//         Math.random() - 0.5,
+//         Math.random() - 0.5
+//     );
+//     geometry.vertices.push(vertex);
+// }
 // faces on geomatries
-geometry.faces.push(new THREE.Face3(0, 1, 2)); 
+// geometry.faces.push(new THREE.Face3(0, 1, 2)); 
 /////////////////////////////////////////////////////////////////////////////////////
 
 
