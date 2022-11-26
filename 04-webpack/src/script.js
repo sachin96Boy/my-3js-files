@@ -1,19 +1,19 @@
 import "./style.css";
 import * as THREE from "three";
-import gsap from 'gsap';
+// import gsap from 'gsap';
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 import * as dat from "dat.gui";
 
 // Debug
-const gui = new dat.GUI();
+// const gui = new dat.GUI();
 
 // debg colors object
-const parameters = {
-  color: 0xff0000,
-  spin: () => {
-    gsap.to(cube.rotation, { duration: 1, y: cube.rotation.y + 10 });
-  },
-}
+// const parameters = {
+//   color: 0xff0000,
+//   spin: () => {
+//     gsap.to(cube.rotation, { duration: 1, y: cube.rotation.y + 10 });
+//   },
+// }
 
 let mouse = {
   x: 0,
@@ -94,16 +94,16 @@ const cube = new THREE.Mesh(geometry, material);
 scene.add(cube);
 
 // debug cube mesh
-gui.add(cube.position, 'x').min(-3).max(3).step(0.01).name('eje x');
-gui.add(cube.position, 'y').min(-3).max(3).step(0.01).name('eje y');
-gui.add(cube, 'visible');
-gui.add(material, 'wireframe');
-// add spin
-gui.add(parameters, 'spin');
-// debug colors
-gui.addColor(parameters, 'color').onChange(() => {
-  material.color.set(parameters.color);
-})
+// gui.add(cube.position, 'x').min(-3).max(3).step(0.01).name('eje x');
+// gui.add(cube.position, 'y').min(-3).max(3).step(0.01).name('eje y');
+// gui.add(cube, 'visible');
+// gui.add(material, 'wireframe');
+// // add spin
+// gui.add(parameters, 'spin');
+// // debug colors
+// gui.addColor(parameters, 'color').onChange(() => {
+//   material.color.set(parameters.color);
+// })
 
 // adding camera
 const camera = new THREE.PerspectiveCamera(
