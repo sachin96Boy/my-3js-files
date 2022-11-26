@@ -2,7 +2,45 @@ import "./style.css";
 import * as THREE from "three";
 // import gsap from 'gsap';
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
-import * as dat from "dat.gui";
+// import * as dat from "dat.gui";
+
+import imageSource from "../static/textures/door/color.jpg";
+
+// image texture
+// const image = new Image();
+// const texture = new THREE.Texture(image);
+// image.onload = () => {
+//   texture.needsUpdate = true;
+// }
+// image.src = imageSource;
+
+// use loading manager
+const loadingManager = new THREE.LoadingManager();
+loadingManager.onStart = () => {
+  console.log("loading started");
+};
+loadingManager.onLoad = () => {
+  console.log("loading finished");
+  animate();
+};
+loadingManager.onProgress = () => {
+  console.log("loading progress");
+};
+loadingManager.onError = () => {
+  console.log("loading error");
+};
+
+// use texterloader - this is the proper way to load image
+const textureLoader = new THREE.TextureLoader(loadingManager);
+const colorTexture = textureLoader.load("textures/door/color.jpg");
+const alphaTexture = textureLoader.load("textures/door/alpha.jpg");
+const heightTexture = textureLoader.load("textures/door/height.jpg");
+const ambientOcclusionTexture = textureLoader.load(
+  "textures/door/ambientOcclusion.jpg"
+);
+const metalnessTexture = textureLoader.load("textures/metalness.jpg");
+const normalTexture = textureLoader.load("textures/door/normal.jpg");
+const roughnessTexture = textureLoader.load("textures/roughness.jpg");
 
 // Debug
 // const gui = new dat.GUI();
@@ -85,11 +123,11 @@ const geometry = new THREE.BoxGeometry(1, 1, 1);
 //     geometry.vertices.push(vertex);
 // }
 // faces on geomatries
-// geometry.faces.push(new THREE.Face3(0, 1, 2)); 
+// geometry.faces.push(new THREE.Face3(0, 1, 2));
 /////////////////////////////////////////////////////////////////////////////////////
 
-
-const material = new THREE.MeshBasicMaterial({ color: parameters.color, /*wireframe:true*/ });
+// const material = new THREE.MeshBasicMaterial({ color: parameters.color, /*wireframe:true*/ });
+const material = new THREE.MeshBasicMaterial({ map: colorTexture });
 const cube = new THREE.Mesh(geometry, material);
 scene.add(cube);
 
