@@ -42,6 +42,20 @@ const metalnessTexture = textureLoader.load("textures/metalness.jpg");
 const normalTexture = textureLoader.load("textures/door/normal.jpg");
 const roughnessTexture = textureLoader.load("textures/roughness.jpg");
 
+// repeat texture
+// colorTexture.repeat.x = 2;
+// colorTexture.repeat.y = 3; 
+// colorTexture.wrapS = THREE.RepeatWrapping;
+// colorTexture.wrapT = THREE.RepeatWrapping;
+
+// colorTexture.offset.x = 0.5;
+// colorTexture.offset.y = 0.5;
+colorTexture.rotation = Math.PI * 0.25;
+colorTexture.center.x = 0.5;
+colorTexture.center.y = 0.5;
+
+
+
 // Debug
 // const gui = new dat.GUI();
 
