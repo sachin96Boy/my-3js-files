@@ -4,7 +4,7 @@ import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 // import * as dat from "dat.gui";
 
-import imageSource from "../static/textures/door/color.jpg";
+// import imageSource from "../static/textures/door/color.jpg";
 
 // image texture
 // const image = new Image();
@@ -15,32 +15,32 @@ import imageSource from "../static/textures/door/color.jpg";
 // image.src = imageSource;
 
 // use loading manager
-const loadingManager = new THREE.LoadingManager();
-loadingManager.onStart = () => {
-  console.log("loading started");
-};
-loadingManager.onLoad = () => {
-  console.log("loading finished");
-  animate();
-};
-loadingManager.onProgress = () => {
-  console.log("loading progress");
-};
-loadingManager.onError = () => {
-  console.log("loading error");
-};
+// const loadingManager = new THREE.LoadingManager();
+// loadingManager.onStart = () => {
+//   console.log("loading started");
+// };
+// loadingManager.onLoad = () => {
+//   console.log("loading finished");
+//   animate();
+// };
+// loadingManager.onProgress = () => {
+//   console.log("loading progress");
+// };
+// loadingManager.onError = () => {
+//   console.log("loading error");
+// };
 
 // use texterloader - this is the proper way to load image
-const textureLoader = new THREE.TextureLoader(loadingManager);
-const colorTexture = textureLoader.load("textures/door/color.jpg");
-const alphaTexture = textureLoader.load("textures/door/alpha.jpg");
-const heightTexture = textureLoader.load("textures/door/height.jpg");
-const ambientOcclusionTexture = textureLoader.load(
-  "textures/door/ambientOcclusion.jpg"
-);
-const metalnessTexture = textureLoader.load("textures/metalness.jpg");
-const normalTexture = textureLoader.load("textures/door/normal.jpg");
-const roughnessTexture = textureLoader.load("textures/roughness.jpg");
+// const textureLoader = new THREE.TextureLoader(loadingManager);
+// const colorTexture = textureLoader.load("textures/door/color.jpg");
+// const alphaTexture = textureLoader.load("textures/door/alpha.jpg");
+// const heightTexture = textureLoader.load("textures/door/height.jpg");
+// const ambientOcclusionTexture = textureLoader.load(
+//   "textures/door/ambientOcclusion.jpg"
+// );
+// const metalnessTexture = textureLoader.load("textures/metalness.jpg");
+// const normalTexture = textureLoader.load("textures/door/normal.jpg");
+// const roughnessTexture = textureLoader.load("textures/roughness.jpg");
 
 // repeat texture
 // colorTexture.repeat.x = 2;
@@ -50,9 +50,9 @@ const roughnessTexture = textureLoader.load("textures/roughness.jpg");
 
 // colorTexture.offset.x = 0.5;
 // colorTexture.offset.y = 0.5;
-colorTexture.rotation = Math.PI * 0.25;
-colorTexture.center.x = 0.5;
-colorTexture.center.y = 0.5;
+// colorTexture.rotation = Math.PI * 0.25;
+// colorTexture.center.x = 0.5;
+// colorTexture.center.y = 0.5;
 
 
 
@@ -123,8 +123,11 @@ window.addEventListener("dblclick", () => {
 // scene
 const scene = new THREE.Scene();
 
+// materials objects
+const material = new THREE.MeshBasicMaterial();
+
 // object
-const geometry = new THREE.BoxGeometry(1, 1, 1);
+// const geometry = new THREE.BoxGeometry(1, 1, 1);
 // //////////////////////////////////////////////////////////////////////////////
 //const geometry = new THREE.Geometry(); // empty geometry
 // for loop to add 1000 vertices
@@ -141,9 +144,9 @@ const geometry = new THREE.BoxGeometry(1, 1, 1);
 /////////////////////////////////////////////////////////////////////////////////////
 
 // const material = new THREE.MeshBasicMaterial({ color: parameters.color, /*wireframe:true*/ });
-const material = new THREE.MeshBasicMaterial({ map: colorTexture });
-const cube = new THREE.Mesh(geometry, material);
-scene.add(cube);
+// const material = new THREE.MeshBasicMaterial({ map: colorTexture });
+// const cube = new THREE.Mesh(geometry, material);
+// scene.add(cube);
 
 // debug cube mesh
 // gui.add(cube.position, 'x').min(-3).max(3).step(0.01).name('eje x');
@@ -172,7 +175,7 @@ renderer.setSize(window.innerWidth, window.innerHeight);
 document.body.appendChild(renderer.domElement);
 
 // clock
-// constclock = new THREE.Clock();
+constclock = new THREE.Clock();
 
 const controls = new OrbitControls(camera, renderer.domElement);
 
@@ -183,9 +186,9 @@ controls.enableDamping = true;
 // animate object
 function animate() {
   // clock
-  // const elapsedTime = clock.getElapsedTime();
+  const elapsedTime = clock.getElapsedTime();
 
-  requestAnimationFrame(animate);
+  // requestAnimationFrame(animate);
 
   // camera.position.x = Math.sin(mouse.x * Math.PI * 2) * 3;
   // camera.position.z = Math.cos(mouse.x * Math.PI * 2) * 3;
@@ -199,6 +202,7 @@ function animate() {
   controls.update();
 
   renderer.render(scene, camera);
+  window.requestAnimationFrame(animate)
 }
 
 animate();
